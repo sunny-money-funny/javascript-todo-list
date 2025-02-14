@@ -1,0 +1,140 @@
+@font-face {
+    font-family: 'DungGeunMo';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LeeSeoyun';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container {
+    text-align:center;
+    border: 1px solid black;
+    background-color: #F9F7F7;
+    width: 500px;
+    margin: auto;
+    height: 90vh;
+    display:flex;
+    flex-direction: column;
+}
+
+.container h1 {
+    font-family: 'DungGeunMo';
+    color: 112D4E;    
+}
+
+.input-container {
+    display:flex;
+    justify-content: center;
+    gap:10px;
+}
+
+.input-container input {
+    color: black;
+    width: 50%;
+    padding: 5px;
+}
+
+.input-container button {
+    background-color: #112D4E;
+    color: white;
+    width: 10%;
+}
+
+.category-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:20px;
+}
+
+.empty-message {
+    color: #112D4E;
+    background-color: yellow;
+}
+
+
+.list-container {    
+    display:flex;
+    padding: 30px;
+    flex-direction:column;
+    justify-content:center;
+    max-height:80vh;
+    height:60vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    gap:10px;
+}
+
+.list-container .list-item {
+    background-color:#DBE2EF;
+    border: 1px solid #112D4E;
+    padding: 10px;
+    color:black;
+    width: 95%;
+    font-family: 'LeeSeoyun';
+    display: flex;
+    align-items : center;
+    justify-content : space-between;
+    font-size: 14px;
+}
+
+.list-container .list-item .todo-text{
+    display:flex;
+    flex:3;
+    text-align: left;
+}
+
+.list-container .list-item .button-container {
+    display:flex;
+    flex-shrink: 0;
+    justify-content:flex-end;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 완료 버튼 스타일 */
+.status {
+    position: relative;
+    cursor: pointer;
+}
+
+/* 툴팁 기본 상태 (숨김) */
+.status::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 10; 
+}
+
+/* 마우스를 올렸을 때 툴팁 보이게 */
+.status:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.state-container {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.state-container img {
+    width: 100px;
+}
