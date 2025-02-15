@@ -19,11 +19,21 @@
     font-style: normal;
 }
 
+:root {
+    --col1:#F6F5F2;
+    --col2:#F0EBE3;
+    --col3:#F3D0D7;
+    --col4:#FFEFEF;
+}
+
+body {
+    cursor : url("/nat260.cur"), auto;
+}
+
 .container {
     font-family: 'Pretendard-Regular';
     text-align:center;
-    border: 1px solid black;
-    background-color: #F9F7F7;
+    background-color:var(--col3);
     width: 500px;
     margin: auto;
     height: 90vh;
@@ -44,14 +54,16 @@
 
 .input-container input {
     font-family: 'Pretendard-Regular';
+    border: var(--col2);
     color: black;
     width: 50%;
     padding: 5px;
 }
 
 .input-container button {
-    background-color: #112D4E;
-    color: white;
+    background-color: var(--col4);
+    border: 2px solid var(--col4);
+    color: black;
     width: 10%;
     font-family: 'Pretendard-Regular';
 }
@@ -64,10 +76,9 @@
 }
 
 .empty-message {
-    color: #112D4E;
-    background-color: yellow;
+    color: black;
+    background-color: var(--col4);
 }
-
 
 .list-container {    
     display:flex;
@@ -82,8 +93,7 @@
 }
 
 .list-container .list-item {
-    background-color:#DBE2EF;
-    border: 1px solid #112D4E;
+    background-color:var(--col4);
     padding: 10px;
     color:black;
     width: 95%;
@@ -96,19 +106,42 @@
 
 .list-container .list-item .category-text {
     font-family: 'Pretendard-Regular';
-    color: #3F72AF;
-    font-style: italic;
+    color: black;    
+    font-size: 14px;
+    flex-shrink: 0;
+    display:flex;
+    justify-content:flex-start;
+    align-items: center;
+    margin-right:10px;
 }
 
+.category-dropdown {
+    font-family: 'Pretendard-Regular';    
+    color: white;
+    font-style: italic;
+    padding: 5px;
+    background-color:var(--col3);
+    border: 1px solid var(--col2);
+    font-size:14px;
+    padding:5px;
+    list-style-type:none;
+    gap:10px;
+}
+
+.category-dropdown li {
+    padding: 4px;
+}
 
 .list-container .list-item .todo-text{
     display:flex;
     flex:3;
     text-align: left;
     font-family: 'Pretendard-Regular';
+    word-wrap: break-word;
 }
 
 .list-container .list-item .button-container {
+    margin-left: 10px;
     display:flex;
     flex-shrink: 0;
     justify-content:flex-end;
@@ -119,6 +152,9 @@
 
 .button-container button {    
     font-family: 'Pretendard-Regular';
+    background-color:var(--col4);
+    border: 1px solid black;
+    font-size:10px;
 }
 
 /* 완료 버튼 스타일 */
@@ -160,4 +196,10 @@
 
 .state-container img {
     width: 100px;
+}
+
+.state-text {
+    font-family: 'Pretendard-Regular';
+    font-size: 15px;
+    color: black;
 }

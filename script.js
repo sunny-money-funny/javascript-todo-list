@@ -30,40 +30,9 @@ function updateMessage() {
     }
 }
 
-function categoryDropdown(categoryText) {
-    const exisitingDropdown = document.querySelector(".category-dropdown");
-    if (exisitingDropdown) {
-        document.body.removeChild(exisitingDropdown);
-    }
-
-    const dropdown = document.createElement("ul");
-    dropdown.classList.add("category-dropdown");
-
-    const categories = [
-        { value: "all", text: "전체" },
-        { value: "work", text: "업무"},
-        { value: "study", text: "공부"},
-    ]
-
-    categories.forEach(category => {
-        const item = document.createElement("li");
-        item.innerText = category.text;
-        item.addEventListener("click", () => {
-            categoryText.innerText = category.text;
-            categoryText.setAttribute("data-category", category.value);
-            document.body.removeChild(dropdown);
-        });
-        dropdown.appendChild(item);
-    });
-
-    return dropdown;
-}
-
-function filterTodos(category){
-    selectedCategory = category;
-
+function filterTodos(selectedCategory) {
     todos.forEach(todo => {
-        if (category === "all" || todo.category === category){
+        if (selectedCategory === "all" || todo.category === selectedCategory) {  
             todo.element.style.display = "flex";
         } else {
             todo.element.style.display = "none";
@@ -85,9 +54,9 @@ function addTodo() {
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("button-container");
 
-    // 카테고리 텍스트
+    // 카테고리 표시
     const categoryText = document.createElement("span");
-    categoryText.innerText = "all";
+    categoryText.innerText = "전체";
     categoryText.classList.add("category-text");
     categoryText.addEventListener("click", (event) => {
         const dropdown = categoryDropdown(categoryText);
@@ -103,8 +72,8 @@ function addTodo() {
     deleteBtn.addEventListener("click", () => {
         listContainer.removeChild(todoItem);
         todos = todos.filter(todo => todo.element !== todoItem); // 배열에서 삭제
-        updateCounts(); // 카운트 업데이트
-        updateMessage(); // 메시지 업데이트
+        updateCounts();
+        updateMessage();
     });
 
     // 완료 버튼 
@@ -119,7 +88,7 @@ function addTodo() {
 
         if (doneBtn.checked){
             todoText.style.textDecoration = "line-through";
-            todoItem.style.backgroundColor = "#a9a9a9";
+            todoItem.style.backgroundColor = "#F0EBE3";
             alert(messages[Math.floor((Math.random()*messages.length))]);
         } else {
             todoText.style.textDecoration = "none";
@@ -132,7 +101,8 @@ function addTodo() {
     // todo 아이템을 배열에 저장
     const todoData = {
         done: false, // 완료 여부
-        element: todoItem
+        element: todoItem,
+        category: "전체"
     };
     todos.push(todoData);
 
@@ -150,6 +120,49 @@ function addTodo() {
 }
 
 
+function categoryDropdown(categoryText) {
+    const exisitingDropdown = document.querySelector(".category-dropdown");
+    if (exisitingDropdown) {
+        document.body.removeChild(exisitingDropdown);
+    }
+
+    const dropdown = document.createElement("ul");
+    dropdown.classList.add("category-dropdown");
+
+    const categories = [
+        { value: "all", text: "전체" },
+        { value: "work", text: "업무"},
+        { value: "study", text: "공부"},
+    ]
+
+    categories.forEach(category => {
+        const item = document.createElement("li");
+        item.innerText = category.text;
+
+        if (category.value === categoryText.getAttribute("data-category")) {
+            item.style.color = "black";  // 현재 선택된 항목은 검정색
+        } else {
+            item.style.color = "";  // 다른 항목은 기본 색상
+        }
+        
+        item.addEventListener("click", () => {
+            categoryText.innerText = category.text;
+            categoryText.setAttribute("data-category", category.value);
+            
+            const todoData = todos.find(todo => todo.element === categoryText.closest('.list-item'));
+            if (todoData) {
+                todoData.category = category.value;
+            }
+
+            document.body.removeChild(dropdown);
+        });
+        dropdown.appendChild(item);
+
+    });
+
+    return dropdown;
+}
+
 // 카테고리 필터 버튼
 const categoryFilters = document.querySelectorAll(".category-container input[type='radio']");
 categoryFilters.forEach(radio => {
@@ -157,7 +170,6 @@ categoryFilters.forEach(radio => {
         filterTodos(event.target.value);
     });
 });
-
 
 addBtn.addEventListener("click", addTodo);
 
