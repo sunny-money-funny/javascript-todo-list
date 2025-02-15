@@ -57,6 +57,7 @@ function addTodo() {
     // 카테고리 표시
     const categoryText = document.createElement("span");
     categoryText.innerText = "전체";
+    categoryText.setAttribute("data-category", "all");
     categoryText.classList.add("category-text");
     categoryText.addEventListener("click", (event) => {
         const dropdown = categoryDropdown(categoryText);
@@ -119,7 +120,6 @@ function addTodo() {
     updateMessage(); // 메시지 업데이트
 }
 
-
 function categoryDropdown(categoryText) {
     const exisitingDropdown = document.querySelector(".category-dropdown");
     if (exisitingDropdown) {
@@ -138,7 +138,7 @@ function categoryDropdown(categoryText) {
     categories.forEach(category => {
         const item = document.createElement("li");
         item.innerText = category.text;
-
+        
         if (category.value === categoryText.getAttribute("data-category")) {
             item.style.color = "black";  // 현재 선택된 항목은 검정색
         } else {
