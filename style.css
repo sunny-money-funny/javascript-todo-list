@@ -12,7 +12,15 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
 .container {
+    font-family: 'Pretendard-Regular';
     text-align:center;
     border: 1px solid black;
     background-color: #F9F7F7;
@@ -35,6 +43,7 @@
 }
 
 .input-container input {
+    font-family: 'Pretendard-Regular';
     color: black;
     width: 50%;
     padding: 5px;
@@ -44,6 +53,7 @@
     background-color: #112D4E;
     color: white;
     width: 10%;
+    font-family: 'Pretendard-Regular';
 }
 
 .category-container {
@@ -77,17 +87,25 @@
     padding: 10px;
     color:black;
     width: 95%;
-    font-family: 'LeeSeoyun';
+    font-family: 'Pretendard-Regular';
     display: flex;
     align-items : center;
     justify-content : space-between;
     font-size: 14px;
 }
 
+.list-container .list-item .category-text {
+    font-family: 'Pretendard-Regular';
+    color: #3F72AF;
+    font-style: italic;
+}
+
+
 .list-container .list-item .todo-text{
     display:flex;
     flex:3;
     text-align: left;
+    font-family: 'Pretendard-Regular';
 }
 
 .list-container .list-item .button-container {
@@ -96,6 +114,11 @@
     justify-content:flex-end;
     align-items: center;
     gap: 5px;
+    font-family: 'Pretendard-Regular';
+}
+
+.button-container button {    
+    font-family: 'Pretendard-Regular';
 }
 
 /* 완료 버튼 스타일 */

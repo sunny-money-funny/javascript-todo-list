@@ -13,7 +13,6 @@ const todoCountElem = document.getElementById("undone-count");
 let todos = []; // 할 일 항목 배열
 
 function updateCounts() {
-    // 전체, 완료, 미완료 항목 수 업데이트
     const totalCount = todos.length;
     const doneCount = todos.filter(todo => todo.done).length;
     const todoCount = totalCount - doneCount;
@@ -31,6 +30,47 @@ function updateMessage() {
     }
 }
 
+function categoryDropdown(categoryText) {
+    const exisitingDropdown = document.querySelector(".category-dropdown");
+    if (exisitingDropdown) {
+        document.body.removeChild(exisitingDropdown);
+    }
+
+    const dropdown = document.createElement("ul");
+    dropdown.classList.add("category-dropdown");
+
+    const categories = [
+        { value: "all", text: "전체" },
+        { value: "work", text: "업무"},
+        { value: "study", text: "공부"},
+    ]
+
+    categories.forEach(category => {
+        const item = document.createElement("li");
+        item.innerText = category.text;
+        item.addEventListener("click", () => {
+            categoryText.innerText = category.text;
+            categoryText.setAttribute("data-category", category.value);
+            document.body.removeChild(dropdown);
+        });
+        dropdown.appendChild(item);
+    });
+
+    return dropdown;
+}
+
+function filterTodos(category){
+    selectedCategory = category;
+
+    todos.forEach(todo => {
+        if (category === "all" || todo.category === category){
+            todo.element.style.display = "flex";
+        } else {
+            todo.element.style.display = "none";
+        }
+    });
+}
+
 function addTodo() {
     const todo = todoInput.value.trim();
     if (todo === "") return;
@@ -44,6 +84,18 @@ function addTodo() {
 
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("button-container");
+
+    // 카테고리 텍스트
+    const categoryText = document.createElement("span");
+    categoryText.innerText = "all";
+    categoryText.classList.add("category-text");
+    categoryText.addEventListener("click", (event) => {
+        const dropdown = categoryDropdown(categoryText);
+        dropdown.style.position = "absolute";
+        dropdown.style.left = `${event.pageX}px`;
+        dropdown.style.top = `${event.pageY}px`;
+        document.body.appendChild(dropdown);
+    });
 
     // 삭제 버튼
     const deleteBtn = document.createElement("button");
@@ -86,6 +138,7 @@ function addTodo() {
 
     // 요소 추가
     listContainer.appendChild(todoItem);
+    todoItem.appendChild(categoryText);
     todoItem.appendChild(todoText);
     todoItem.appendChild(buttonContainer);
     buttonContainer.appendChild(doneBtn);
@@ -96,6 +149,26 @@ function addTodo() {
     updateMessage(); // 메시지 업데이트
 }
 
+
+// 카테고리 필터 버튼
+const categoryFilters = document.querySelectorAll(".category-container input[type='radio']");
+categoryFilters.forEach(radio => {
+    radio.addEventListener("change", (event) => {
+        filterTodos(event.target.value);
+    });
+});
+
+
 addBtn.addEventListener("click", addTodo);
+
+// 드롭다운 바깥을 클릭하면 닫히도록 처리
+document.addEventListener("click", (event) => {
+    if (!event.target.classList.contains("category-text")) {
+        const existingDropdown = document.querySelector(".category-dropdown");
+        if (existingDropdown) {
+            document.body.removeChild(existingDropdown);
+        }
+    }
+});
 
 updateMessage();
