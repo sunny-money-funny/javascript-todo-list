@@ -33,6 +33,25 @@ body {
   cursor: url("./element/nat260.cur"), auto;
 }
 
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --col1: #f6f5f2;
+  --col2: #f0ebe3;
+  --col3: #f3d0d7;
+  --col4: #ffefef;
+}
+
+body {
+  cursor: url("/nat260.cur"), auto;
+}
+
 .container {
   font-family: "Pretendard-Regular";
   text-align: center;
@@ -217,6 +236,12 @@ body {
 
 .state-container img {
   width: 100px;
+}
+
+.state-text {
+  font-family: "Pretendard-Regular";
+  font-size: 15px;
+  color: black;
 }
 
 .state-text {
