@@ -3,32 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>냐옹이 To do list</title>
+    <title>냐옹이 투두리스트</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+    <br>
     <div class = "container">
-        <h1>My To Do</h1>
+        <h1>냥 투두</h1>
         <div class = "input-container">
-            <input type = "text" placeholder = "나의 TO DO를 입력하세요!"></input>
+            <input type = "text" placeholder = "할 일을 입력하라냥ㅋ"></input>
             <button class = "add-button">ADD</button>
         </div>
         <div class = "category-container">
-            <input type="radio" name="category" value=all" checked>전체
-            <input type="radio" name="category" value="work">과제
-            <input type="radio" name="category" value="chore">볼일
+            <input type="radio" name="category" value="all" checked>전체
+            <input type="radio" name="category" value="work">업무
+            <input type="radio" name="category" value="study">공부
         </div>
         <div class = "list-container">
-            <div class ="empty-message">아직 할 일이 없어용</div>
+            <div class ="empty-message">아직 할 일이 없다냐옹</div>
         </div>
         <div class = "state-container">
-            <img src = "/cat.png">
+            <img src = "./element/cat.png">
             <div class = "state-text">
-                <li style = "list-style:none;">
-                    <li>전체: <span id="total-count">0</span></li>
-                    <li>완료: <span id="done-count">0</span></li>
-                    <li>미완료: <span id="undone-count">0</span></li>
-                </li>
+                    전체: <span id="total-count">0</span><br>
+                    완료: <span id="done-count">0</span><br>
+                    미완료: <span id="undone-count">0</span>
             </div>
         </div>
     </div>
